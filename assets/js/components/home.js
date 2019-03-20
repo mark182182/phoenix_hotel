@@ -11,7 +11,7 @@ class Home extends Component {
   handleNameChange = this.handleNameChange.bind(this);
   handleLocationChange = this.handleLocationChange.bind(this);
   handleCapacityChange = this.handleCapacityChange.bind(this);
-  sendForm = this.sendForm.bind(this);
+  createHotel = this.createHotel.bind(this);
 
   handleNameChange() {
     this.setState({ name: event.target.value })
