@@ -8,7 +8,7 @@ defmodule PhoenixHotelWeb.HotelController do
 
   def index(conn, _params) do
     hotels = Hotels.list_hotels()
-    render(conn, "index.json", hotels: hotels)
+    render(conn, "hotel.html", hotels: hotels)
   end
 
   def create(conn, hotel_params) do

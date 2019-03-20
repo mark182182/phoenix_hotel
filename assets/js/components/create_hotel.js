@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../css/app.css';
 import request from 'superagent';
 
-class Home extends Component {
+class CreateHotel extends Component {
   state = {
     name: "",
     location: "",
@@ -11,7 +11,7 @@ class Home extends Component {
   handleNameChange = this.handleNameChange.bind(this);
   handleLocationChange = this.handleLocationChange.bind(this);
   handleCapacityChange = this.handleCapacityChange.bind(this);
-  createHotel = this.createHotel.bind(this);
+  submitHotel = this.submitHotel.bind(this);
 
   handleNameChange() {
     this.setState({ name: event.target.value })
@@ -25,9 +25,8 @@ class Home extends Component {
     this.setState({ capacity: event.target.value })
   }
 
-  createHotel() {
+  submitHotel() {
     event.preventDefault();
-    
     const hotel = {
       name: this.state.name,
       location: this.state.location,
@@ -57,11 +56,11 @@ class Home extends Component {
           <input name="location" type="text" minLength="2" maxLength="30" id="location" onChange={this.handleLocationChange} required></input>
           <label htmlFor="capacity">Capacity</label>
           <input name="capacity" type="number" minLength="1" id="capacity" onChange={this.handleCapacityChange} required></input>
-          <button onClick={this.createHotel} name="submit" type="submit">Submit</button>
+          <button onClick={this.submitHotel} name="submit" type="submit">Submit</button>
         </form>
       </div>
     );
   };
 }
 
-export default Home;
+export default CreateHotel;

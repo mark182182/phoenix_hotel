@@ -11,9 +11,9 @@ import css from "../css/app.css"
 //
 import "phoenix_html"
 import "react-phoenix"
-import Home from "./components/home"
+import CreateHotel from "./components/create_hotel"
 window.Components = {
-  Home
+  CreateHotel
 }
 
 

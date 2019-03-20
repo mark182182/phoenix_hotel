@@ -20,9 +20,9 @@ defmodule PhoenixHotelWeb.Router do
     post "/hotel", HotelController, :create
     delete "/hotel/:id", HotelController, :delete
     get "/hotel/:id", HotelController, :show
-    get "/hotel", HotelController, :index
-    get "/home", HomeController, :home
-    get "/", HomeController, :home
+    get "/create", HotelController, :index
+    get "/home", HotelController, :index
+    get "/", HotelController, :index
   end
 
   # Other scopes may use custom stacks.

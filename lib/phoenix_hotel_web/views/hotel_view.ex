@@ -11,9 +11,13 @@ defmodule PhoenixHotelWeb.HotelView do
   end
 
   def render("hotel.json", %{hotel: hotel}) do
-    %{id: hotel.id,
-      name: hotel.name,
-      location: hotel.location,
-      capacity: hotel.capacity}
+    %{id: hotel.id, name: hotel.name, location: hotel.location, capacity: hotel.capacity}
+  end
+
+  def render(conn, "create_hotel.html") do
+  end
+
+  def csrf_token() do
+    Plug.CSRFProtection.get_csrf_token()
   end
 end
