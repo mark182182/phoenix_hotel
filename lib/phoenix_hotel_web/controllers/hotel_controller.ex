@@ -11,7 +11,7 @@ defmodule PhoenixHotelWeb.HotelController do
     render(conn, "index.json", hotels: hotels)
   end
 
-  def create(conn, %{"hotel" => hotel_params}) do
+  def create(conn, hotel_params) do
     with {:ok, %Hotel{} = hotel} <- Hotels.create_hotel(hotel_params) do
       conn
       |> put_status(:created)
