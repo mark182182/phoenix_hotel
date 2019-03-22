@@ -134,4 +134,19 @@ header nav a {
 }
 
 /* This file is for your main application css. */
+.selected-hotel-container {
+  display: flex;
+  justify-content: space-around;
+}
 
+.selected-hotel-info-container {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.save-update-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

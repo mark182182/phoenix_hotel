@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
-import Popup from 'react-popup';
+import Popup from 'reactjs-popup';
 import '../../css/app.css';
 import request from 'superagent';
 
@@ -9,6 +8,22 @@ class ListHotels extends Component {
     hotels: {
       data: []
     }
+  }
+
+  selectedHotelNameChange() {
+    console.log(
+      event.target.innerHTML
+    );
+
+    // this.setState(this.state.hotels.data.name);
+  }
+
+  selectedHotelLocationChange() {
+
+  }
+
+  selectedHotelCapacityChange() {
+
   }
 
   componentDidMount() {
@@ -30,7 +45,6 @@ class ListHotels extends Component {
   }
 
   render() {
-    this.state.hotels
     return (
       <div>
         <h1>List of hotels:</h1>
@@ -51,7 +65,27 @@ class ListHotels extends Component {
                 <td> {currentHotel.name}</td>
                 <td> {currentHotel.location}</td>
                 <td> {currentHotel.capacity}</td>
-                <td id={currentHotel.id} onClick={this.updateHotel}> Edit </td>
+                <Popup trigger={<button id={currentHotel.id} onClick={this.updateHotel}> Edit </button>} modal position='left center'>
+                  <div className='selected-hotel-info-container'>
+                    <span>Name</span>
+                    <span>Location</span>
+                    <span>Capacity</span>
+                  </div>
+                  <div className='selected-hotel-container'>
+                    <div className='selected-hotel-name-container'>
+                      <input onChange={this.selectedHotelNameChange} className='selected-hotel-name' value={currentHotel.name}></input>
+                    </div>
+                    <div className='selected-hotel-location-container'>
+                      <input onChange={this.selectedHotelLocationChange} className='selected-hotel-location' value={currentHotel.location}></input>
+                    </div>
+                    <div className='selected-hotel-capacity-container'>
+                      <input onChange={this.selectedHotelCapacityChange} className='selected-hotel-capacity' value={currentHotel.capacity}></input>
+                    </div>
+                  </div>
+                  <div className='save-update-container'>
+                    <button className='save-update'>Save changes</button>
+                  </div>
+                </Popup>
               </tr>
             })}
           </tbody>
@@ -60,11 +94,5 @@ class ListHotels extends Component {
     );
   }
 }
-ReactDom.render(
-  <Popup />,
-  document.getElementById('1')
-);
-
-Popup.alert('Hello');
 
 export default ListHotels
