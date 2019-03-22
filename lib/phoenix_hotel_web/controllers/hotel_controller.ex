@@ -7,8 +7,16 @@ defmodule PhoenixHotelWeb.HotelController do
   action_fallback PhoenixHotelWeb.FallbackController
 
   def index(conn, _params) do
+    render(conn, "hotel.html")
+  end
+
+  def list_hotels(conn, _params) do
     hotels = Hotels.list_hotels()
-    render(conn, "hotel.html", hotels: hotels)
+    render(conn, "list_all.json", hotels: hotels)
+  end
+
+  def create_page(conn, _params) do
+    render(conn, "create.html")
   end
 
   def create(conn, hotel_params) do
@@ -16,13 +24,13 @@ defmodule PhoenixHotelWeb.HotelController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.hotel_path(conn, :show, hotel))
-      |> render("show.json", hotel: hotel)
+      |> render("hotel.json", hotel: hotel)
     end
   end
 
   def show(conn, %{"id" => id}) do
     hotel = Hotels.get_hotel!(id)
-    render(conn, "show.json", hotel: hotel)
+    render(conn, "list_one.json", hotel: hotel)
   end
 
   def update(conn, %{"id" => id, "hotel" => hotel_params}) do

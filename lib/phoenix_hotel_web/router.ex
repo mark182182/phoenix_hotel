@@ -19,8 +19,9 @@ defmodule PhoenixHotelWeb.Router do
     put "/hotel/:id/:hotel", HotelController, :update
     post "/hotel", HotelController, :create
     delete "/hotel/:id", HotelController, :delete
+    get "/create", HotelController, :create_page
     get "/hotel/:id", HotelController, :show
-    get "/create", HotelController, :index
+    get "/list_hotels", HotelController, :list_hotels
     get "/home", HotelController, :index
     get "/", HotelController, :index
   end

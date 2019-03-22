@@ -12,8 +12,10 @@ import css from "../css/app.css"
 import "phoenix_html"
 import "react-phoenix"
 import CreateHotel from "./components/create_hotel"
+import ListHotels from "./components/list_hotels"
 window.Components = {
-  CreateHotel
+  CreateHotel,
+  ListHotels
 }
 
 
