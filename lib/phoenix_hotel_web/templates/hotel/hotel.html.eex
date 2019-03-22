@@ -1,1 +1,1 @@
-<%= ReactPhoenix.ClientSide.react_component("Components.ListHotels") %>
+<%= ReactPhoenix.ClientSide.react_component("Components.ListHotels", %{csrf_token: csrf_token()}) %>

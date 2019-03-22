@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
+import Popup from 'react-popup';
 import '../../css/app.css';
 import request from 'superagent';
 
 class ListHotels extends Component {
   state = {
     hotels: {
-      data: [{ name: 'a', location: 'b', capacity: 'c' },
-      { name: 'd', location: 'e', capacity: 'f' }]
+      data: []
     }
   }
-  // getHotels = this.getHotels.bind(this);
 
   componentDidMount() {
     this.getHotels();
   }
 
   getHotels() {
-
-    request.get("/list_hotels")
+    request.get('/list_hotels')
       .then((hotels) => {
         this.setState({ hotels: hotels.body })
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  updateHotel(event) {
+    console.log(event.target.id);
   }
 
   render() {
@@ -47,7 +50,9 @@ class ListHotels extends Component {
               return <tr key={10 * Math.random() + 24}>
                 <td> {currentHotel.name}</td>
                 <td> {currentHotel.location}</td>
-                <td> {currentHotel.capacity}</td></tr>
+                <td> {currentHotel.capacity}</td>
+                <td id={currentHotel.id} onClick={this.updateHotel}> Edit </td>
+              </tr>
             })}
           </tbody>
         </table>
@@ -55,5 +60,11 @@ class ListHotels extends Component {
     );
   }
 }
+ReactDom.render(
+  <Popup />,
+  document.getElementById('1')
+);
+
+Popup.alert('Hello');
 
 export default ListHotels

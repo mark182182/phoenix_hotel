@@ -37,7 +37,7 @@ defmodule PhoenixHotelWeb.HotelController do
     hotel = Hotels.get_hotel!(id)
 
     with {:ok, %Hotel{} = hotel} <- Hotels.update_hotel(hotel, hotel_params) do
-      render(conn, "show.json", hotel: hotel)
+      render(conn, "hotel.json", hotel: hotel)
     end
   end
 

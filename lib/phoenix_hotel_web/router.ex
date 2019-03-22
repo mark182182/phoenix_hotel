@@ -16,7 +16,7 @@ defmodule PhoenixHotelWeb.Router do
   scope "/", PhoenixHotelWeb do
     pipe_through :browser
 
-    put "/hotel/:id/:hotel", HotelController, :update
+    put "/hotel/:id", HotelController, :update
     post "/hotel", HotelController, :create
     delete "/hotel/:id", HotelController, :delete
     get "/create", HotelController, :create_page
