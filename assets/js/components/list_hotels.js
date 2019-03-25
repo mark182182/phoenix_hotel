@@ -7,27 +7,17 @@ class ListHotels extends Component {
   state = {
     hotels: {
       data: []
-    }
-  }
-
-  selectedHotelNameChange() {
-    console.log(
-      event.target.innerHTML
-    );
-
-    // this.setState(this.state.hotels.data.name);
-  }
-
-  selectedHotelLocationChange() {
-
-  }
-
-  selectedHotelCapacityChange() {
-
+    },
+    id: ''
   }
 
   componentDidMount() {
     this.getHotels();
+  }
+
+  selectedHotelIdChange() {
+    console.log(event.target);
+    this.setState({ id: event.target.value });
   }
 
   getHotels() {
@@ -40,8 +30,22 @@ class ListHotels extends Component {
       });
   }
 
-  updateHotel(event) {
-    console.log(event.target.id);
+  updateHotel = () => {
+    const id = event.target.id;
+    const name = document.querySelector('.selected-hotel-name').value;
+    const location = document.querySelector('.selected-hotel-location').value;
+    const capacity = document.querySelector('.selected-hotel-capacity').value;
+    const hotel = { 'id': id, 'name': name, 'location': location, 'capacity': capacity };
+    request.put('/hotel/' + id)
+      .set('x-csrf-token', this.props.csrf_token)
+      .set('Content-Type', 'application/json')
+      .send({ hotel: hotel })
+      .then((callback) => {
+        console.log(callback);
+      })
+      .error((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -61,36 +65,38 @@ class ListHotels extends Component {
           </thead>
           <tbody>
             {this.state.hotels.data.map((currentHotel, i) => {
-              return <tr key={10 * Math.random() + 24}>
+              return <tr key={31 * Math.random()}>
                 <td> {currentHotel.name}</td>
                 <td> {currentHotel.location}</td>
                 <td> {currentHotel.capacity}</td>
-                <Popup trigger={<button id={currentHotel.id} onClick={this.updateHotel}> Edit </button>} modal position='left center'>
-                  <div className='selected-hotel-info-container'>
-                    <span>Name</span>
-                    <span>Location</span>
-                    <span>Capacity</span>
-                  </div>
-                  <div className='selected-hotel-container'>
-                    <div className='selected-hotel-name-container'>
-                      <input onChange={this.selectedHotelNameChange} className='selected-hotel-name' value={currentHotel.name}></input>
+                <td>
+                  <Popup trigger={<button> Edit </button>} modal position='left center'>
+                    <div className='selected-hotel-info-container'>
+                      <span>Name</span>
+                      <span>Location</span>
+                      <span>Capacity</span>
                     </div>
-                    <div className='selected-hotel-location-container'>
-                      <input onChange={this.selectedHotelLocationChange} className='selected-hotel-location' value={currentHotel.location}></input>
+                    <div className='selected-hotel-container'>
+                      <div className='selected-hotel-name-container'>
+                        <input type='text' className='selected-hotel-name' defaultValue={currentHotel.name}></input>
+                      </div>
+                      <div className='selected-hotel-location-container'>
+                        <input type='text' className='selected-hotel-location' defaultValue={currentHotel.location}></input>
+                      </div>
+                      <div className='selected-hotel-capacity-container'>
+                        <input type='number' className='selected-hotel-capacity' defaultValue={currentHotel.capacity}></input>
+                      </div>
                     </div>
-                    <div className='selected-hotel-capacity-container'>
-                      <input onChange={this.selectedHotelCapacityChange} className='selected-hotel-capacity' value={currentHotel.capacity}></input>
+                    <div className='save-update-container'>
+                      <button className='selected-id' id={currentHotel.id} onClick={this.updateHotel} className='save-update'>Save changes</button>
                     </div>
-                  </div>
-                  <div className='save-update-container'>
-                    <button className='save-update'>Save changes</button>
-                  </div>
-                </Popup>
+                  </Popup>
+                </td>
               </tr>
             })}
           </tbody>
         </table>
-      </div>
+      </div >
     );
   }
 }
