@@ -7,17 +7,11 @@ class ListHotels extends Component {
   state = {
     hotels: {
       data: []
-    },
-    id: ''
+    }
   }
 
   componentDidMount() {
     this.getHotels();
-  }
-
-  selectedHotelIdChange() {
-    console.log(event.target);
-    this.setState({ id: event.target.value });
   }
 
   getHotels() {
