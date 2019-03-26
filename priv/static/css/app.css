@@ -150,3 +150,7 @@ header nav a {
   justify-content: center;
   align-content: center;
 }
+
+#title {
+  text-align: center;
+}

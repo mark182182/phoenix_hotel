@@ -48,6 +48,19 @@ class ListHotels extends Component {
       });
   }
 
+  deleteHotel = () => {
+    const id = event.target.id;
+    request.delete('/hotel/' + id)
+      .set('x-csrf-token', this.props.csrf_token)
+      .set('Content-Type', 'application/json')
+      .then((callback) => {
+        console.log(callback);
+      })
+      .error((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <div>
@@ -55,7 +68,7 @@ class ListHotels extends Component {
         <table>
           <thead>
             <tr>
-              <th colSpan="3"> Hotels </th>
+              <th id='title' colSpan="5"> Hotels </th>
             </tr>
             <tr>
               <td>Name</td>
@@ -88,9 +101,14 @@ class ListHotels extends Component {
                       </div>
                     </div>
                     <div className='save-update-container'>
-                      <button className='selected-id' id={currentHotel.id} onClick={this.updateHotel} className='save-update'>Save changes</button>
+                      <button id={currentHotel.id} onClick={this.updateHotel} className='save-update'>Save changes</button>
                     </div>
                   </Popup>
+                </td>
+                <td>
+                  <div>
+                    <button id={currentHotel.id} onClick={this.deleteHotel} className='delete'> Delete </button>
+                  </div>
                 </td>
               </tr>
             })}
