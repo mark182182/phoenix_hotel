@@ -61,6 +61,10 @@ class ListHotels extends Component {
       });
   }
 
+  createHotel() {
+    window.location = '/create';
+  }
+
   render() {
     return (
       <div>
@@ -114,6 +118,7 @@ class ListHotels extends Component {
             })}
           </tbody>
         </table>
+        <button onClick={this.createHotel}> Create hotel </button>
       </div >
     );
   }

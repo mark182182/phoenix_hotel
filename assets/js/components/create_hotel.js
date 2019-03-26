@@ -45,6 +45,10 @@ class CreateHotel extends Component {
       });
   }
 
+  listHotels() {
+    window.location = '/'
+  }
+
   render() {
     return (
       <div>
@@ -57,6 +61,7 @@ class CreateHotel extends Component {
           <label htmlFor="capacity">Capacity</label>
           <input name="capacity" type="number" minLength="1" id="capacity" onChange={this.handleCapacityChange} required></input>
           <button onClick={this.submitHotel} name="submit" type="submit">Submit</button>
+          <button onClick={this.listHotels} id='back'> Back </button>
         </form>
       </div>
     );
